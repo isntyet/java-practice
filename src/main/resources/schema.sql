@@ -1,0 +1,6 @@
+CREATE TABLE human (
+    idx BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    money INT NOT NULL,
+    birth DATE
+);

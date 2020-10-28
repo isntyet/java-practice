@@ -20,13 +20,14 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-
-    implementation 'org.projectlombok:lombok'
+    testImplementation('org.assertj:assertj-core:3.15.0')
+    runtimeOnly 'com.h2database:h2:1.4.197'
 }
 
 test {
