@@ -1,4 +1,4 @@
-package com.isntyet.java.practice.stream.domain;
+package com.isntyet.java.practice.human.domain;
 
 import org.junit.jupiter.api.AfterEach;
 
