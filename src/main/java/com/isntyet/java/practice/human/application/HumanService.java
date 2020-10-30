@@ -1,4 +1,4 @@
-package com.isntyet.java.practice.application;
+package com.isntyet.java.practice.human.application;
 
 import com.isntyet.java.practice.human.domain.Human;
 import com.isntyet.java.practice.human.domain.HumanRepository;
@@ -13,15 +13,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class HumanService {
     private final HumanRepository humanRepository;
 
+    @Transactional
     public int currentMoney(String name) {
         Human human = humanRepository.findByName(name);
         return human.getMoney();
     }
 
     @Transactional
-//    @Lock(value = LockModeType.OPTIMISTIC_FORCE_INCREMENT)
     public int decreaseMoney(String name, int money) {
-        Human human = humanRepository.findByName(name);
+        Human human = humanRepository.findWithNameForUpdate(name);
         human.decreaseMoney(money);
         return human.getMoney();
     }

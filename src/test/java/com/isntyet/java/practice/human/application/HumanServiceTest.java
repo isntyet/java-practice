@@ -1,4 +1,4 @@
-package com.isntyet.java.practice.application;
+package com.isntyet.java.practice.human.application;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

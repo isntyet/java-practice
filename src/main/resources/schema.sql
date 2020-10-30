@@ -5,3 +5,10 @@ CREATE TABLE human (
     birth DATE,
     version INT DEFAULT 1
 );
+
+CREATE TABLE home (
+    idx BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    address VARCHAR(255) NOT NULL UNIQUE,
+    price INT NOT NULL DEFAULT 0
+);
