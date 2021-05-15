@@ -2,8 +2,10 @@ package com.isntyet.java.practice.human.application;
 
 import com.isntyet.java.practice.human.domain.Human;
 import com.isntyet.java.practice.human.domain.HumanRepository;
+import com.isntyet.java.practice.human.event.HumanEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 public class HumanService {
     private final HumanRepository humanRepository;
+    private final ApplicationEventPublisher eventPublisher;
 
     @Transactional
     public int currentMoney(String name) {
@@ -24,5 +27,13 @@ public class HumanService {
         Human human = humanRepository.findWithNameForUpdate(name);
         human.decreaseMoney(money);
         return human.getMoney();
+    }
+
+    @Transactional
+    public void increaseMoney(String name, int money) {
+        log.info("in service");
+        Human human = humanRepository.findByName(name);
+        human.increaseMoney(money);
+        eventPublisher.publishEvent(new HumanEvent(this));
     }
 }

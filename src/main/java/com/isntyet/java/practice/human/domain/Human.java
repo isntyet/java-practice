@@ -33,4 +33,8 @@ public class Human {
         }
         return this.money -= money;
     }
+
+    public int increaseMoney(int money) {
+        return this.money += money;
+    }
 }

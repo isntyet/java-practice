@@ -32,4 +32,17 @@ public class HumanController {
         log.info(result);
         return result;
     }
+
+    @GetMapping("/increase")
+    public String increaseMoney(@RequestParam(value = "name") String name, @RequestParam(value = "money") int money) {
+        String result;
+        try {
+            humanService.increaseMoney(name, money);
+            result = "현재 남은돈 : " + humanService.currentMoney(name);
+        } catch (Exception e) {
+            result = e.getMessage();
+        }
+        log.info(result);
+        return result;
+    }
 }

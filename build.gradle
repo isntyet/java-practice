@@ -27,7 +27,7 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testImplementation('org.assertj:assertj-core:3.15.0')
-    runtimeOnly 'com.h2database:h2:1.4.197'
+    runtimeOnly 'mysql:mysql-connector-java'
 }
 
 test {
