@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import org.dom4j.tree.AbstractEntity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,12 +13,14 @@ import java.time.LocalDate;
 @Entity
 @ToString
 @NoArgsConstructor
+@Table(name = "locker")
 public class Locker {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "target_date", unique = true)
     private LocalDate targetDate;
 
     @Enumerated(EnumType.STRING)

@@ -11,7 +11,7 @@ public interface HumanRepository extends JpaRepository<Human, Integer> {
 
     Human findByName(String name);
 
-    @Lock(LockModeType.OPTIMISTIC)
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select h from Human h where h.name = :name")
     Human findWithNameForUpdate(@Param("name") String name);
 }

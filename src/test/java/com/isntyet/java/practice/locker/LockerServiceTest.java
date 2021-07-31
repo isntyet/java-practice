@@ -3,7 +3,6 @@ package com.isntyet.java.practice.locker;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
@@ -15,31 +14,29 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-//@ActiveProfiles("test")
+@ActiveProfiles("test")
 class LockerServiceTest {
     @Autowired
     private LockerService lockerService;
 
     @Test
-    void jo() throws InterruptedException {
+    void multiThreadTest() throws InterruptedException {
         AtomicInteger successCount = new AtomicInteger();
-        int numberOfEexcute = 5;
+        int numberOfExecute = 5;
         ExecutorService service = Executors.newFixedThreadPool(5);
-        CountDownLatch latch = new CountDownLatch(numberOfEexcute);
+        CountDownLatch latch = new CountDownLatch(numberOfExecute);
         LocalDate now = LocalDate.now();
 
-        for (int i = 0; i < numberOfEexcute; i++) {
+        for (int i = 0; i < numberOfExecute; i++) {
             service.execute(() -> {
                 try {
-                    Locker haha = lockerService.lock(now);
+                    Locker locker = lockerService.lock(now);
                     testDo();
-                    lockerService.complete(haha);
+                    lockerService.complete(locker);
                     successCount.getAndIncrement();
                     System.out.println("성공");
-                } catch (ObjectOptimisticLockingFailureException oe) {
-                    System.out.println("충돌감지");
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                    System.out.println("충돌감지 " + e.getMessage());
                 }
                 latch.countDown();
             });

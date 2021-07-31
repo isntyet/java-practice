@@ -18,13 +18,9 @@ public class LockerService {
                 .orElseGet(() -> Locker.of(targetDate));
 
         if(locker.isRunning()) {
-            throw new IllegalArgumentException("이미 bulk billing 진행 중입니다.");
+            throw new IllegalArgumentException("이미 진행 중입니다.");
         }
-        lockerRepository.save(locker.run());
-
-
-        return lockerRepository.findByTargetDate(targetDate)
-                .orElseThrow(() -> new IllegalArgumentException("bulk billing lock 실패하였습니다."));
+        return lockerRepository.save(locker.run());
     }
 
     @Transactional
