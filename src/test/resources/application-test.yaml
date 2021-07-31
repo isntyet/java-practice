@@ -1,12 +1,9 @@
 spring:
-  jpa:
-    properties:
-      database-platform: org.hibernate.dialect.H2Dialect
-      hibernate:
-        dialect: org.hibernate.dialect.MariaDBDialect
-    generate-ddl: true
   datasource:
-    url: jdbc:mysql://localhost:3306/jojae?serverTimezone=UTC&characterEncoding=UTF-8
-    username: root
-    password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:tc:mariadb:10.2:///test
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    username: test
+    password: test
+    initialization-mode: always
+    schema: classpath:sql/schema-test.sql
