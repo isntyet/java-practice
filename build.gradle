@@ -30,10 +30,6 @@ dependencies {
     testImplementation('org.assertj:assertj-core:3.15.0')
     runtimeOnly 'mysql:mysql-connector-java'
 
-    implementation("org.zalando:spring-cloud-config-aws-kms:5.1.2")
-    implementation("com.amazonaws:aws-java-sdk-core:1.11.1019")
-    implementation("com.amazonaws:aws-java-sdk-kms:1.11.1019")
-    implementation("com.amazonaws:jmespath-java:1.11.1019")
     implementation 'com.h2database:h2'
 }
 

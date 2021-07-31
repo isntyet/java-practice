@@ -1,7 +1,0 @@
-
-spring:
-  datasource:
-    url: '{cipher}LhgRBDCp/iYR//H9C6s/8mlGi9w47HKSDsycH/ML7VGj2Cjzk60tdTVGH9Pd+5JxQYIApsV9LIX29fgj2Gdhk/JjzfdaX9M97S57xWKORgNLZ3aFgLztR4LXJxjkFdw9MTvUd8dqBADAxU3v6+rySCvGMGAbklRJbWXhJB+kgcs0bnt8bpiFNZrwF0Zo5CIgMHBp2aCRmVIYy++nshikvR6/PCKCTThZvPHvbI2QDn4Ps35Ri6IX/NvS0UlqDD/5si9ePVMj5fJv1DTO023hynh5LJzfNS6uXcAMt3WT+HY5UaK8UDG1MD531fUjnOhJnMSPF4wCaZZMiOoTn8Q20lDYGlu7H4YfJz++aZWnLTshcHJNMSdtseC1mfi+EkqIpDCcza0cQXXku4qiXZK5LcmlaqixdYzOhNhCPz0+XP0fsboEZdUcM/cgKdt0ukktGdlnkPRxDX8KT6hvyePYh2rRL69N/7gUaJJZsWegOSLCZQVToTHPliDVBKyjtIk+l0IEzEUiVMqsLIrGq0DGGrUOzcSIbn4bvwa+x0HrfitMjvlyKJvDyjTiQLmXX02wDyAY4CyvGeSAL9pJ/ml16qXPB0cZzDt3oUQOQiz/9F4FvGuvGkvfFF6uodveZQgOtysNoZL85JN0YYimo5UY/976D9Bs2mjdxpcOlB5O9DM='
-    username: root
-    password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
