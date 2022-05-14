@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 
+import java.time.LocalDateTime;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,6 +20,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class HomeServiceTest {
     @Autowired
     HomeService homeService;
+
+    @Test
+    void test() {
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println("시간 " + now);
+    }
 
     @Test
     @DisplayName("가격 줄여보기 테스트")

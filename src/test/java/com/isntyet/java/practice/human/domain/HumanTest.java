@@ -1,12 +1,16 @@
 package com.isntyet.java.practice.human.domain;
 
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.time.LocalDateTime;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class HumanTest {
 
-    @AfterEach
-    void tearDown() {
+    @Test
+    void test() {
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println("시간 " + now);
     }
 }
