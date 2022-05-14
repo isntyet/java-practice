@@ -8,3 +8,10 @@ services:
       MYSQL_DATABASE: jojae
     ports:
       - 3306:3306
+  redis:
+    image: redis:alpine
+    command: redis-server --port 6379
+    container_name: test-redis
+    hostname: test
+    ports:
+      - 6379:6379
