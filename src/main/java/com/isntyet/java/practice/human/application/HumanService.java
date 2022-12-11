@@ -2,7 +2,10 @@ package com.isntyet.java.practice.human.application;
 
 import com.isntyet.java.practice.human.domain.Human;
 import com.isntyet.java.practice.human.domain.HumanRepository;
+import com.isntyet.java.practice.human.dto.GetUsersResponse;
 import com.isntyet.java.practice.human.event.HumanEvent;
+import com.isntyet.java.practice.human.infra.UserClient;
+import com.isntyet.java.practice.human.infra.config.UserFeignClientConfig;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
@@ -15,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class HumanService {
     private final HumanRepository humanRepository;
     private final ApplicationEventPublisher eventPublisher;
+    private final UserClient userClient;
 
     @Transactional
     public int currentMoney(String name) {
@@ -35,5 +39,9 @@ public class HumanService {
         Human human = humanRepository.findByName(name);
         human.increaseMoney(money);
         eventPublisher.publishEvent(new HumanEvent(this));
+    }
+
+    public GetUsersResponse getExternalUsers(String nation) {
+        return userClient.getUsers(nation);
     }
 }

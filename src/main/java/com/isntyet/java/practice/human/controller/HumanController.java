@@ -1,6 +1,7 @@
 package com.isntyet.java.practice.human.controller;
 
 import com.isntyet.java.practice.human.application.HumanService;
+import com.isntyet.java.practice.human.dto.GetUsersResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +44,12 @@ public class HumanController {
             result = e.getMessage();
         }
         log.info(result);
+        return result;
+    }
+
+    @GetMapping("/external-users")
+    public GetUsersResponse getExternalUsers(@RequestParam(value = "nation") String nation) {
+        var result = humanService.getExternalUsers(nation);
         return result;
     }
 }
