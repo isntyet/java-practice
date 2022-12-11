@@ -1,7 +1,11 @@
 package com.isntyet.java.practice.human.infra.config;
 
-import org.springframework.context.annotation.Configuration;
+import feign.RequestInterceptor;
+import org.springframework.context.annotation.Bean;
 
-@Configuration
 public class UserFeignClientConfig {
+    @Bean
+    public RequestInterceptor requestInterceptor() throws InterruptedException {
+        return requestTemplate -> requestTemplate.header("header", "header2");
+    }
 }

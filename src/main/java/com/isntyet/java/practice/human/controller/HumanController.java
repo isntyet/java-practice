@@ -1,13 +1,15 @@
 package com.isntyet.java.practice.human.controller;
 
+import com.isntyet.java.practice.common.CommonResponse;
 import com.isntyet.java.practice.human.application.HumanService;
 import com.isntyet.java.practice.human.domain.Human;
-import com.isntyet.java.practice.human.dto.CreateHumanRequest;
-import com.isntyet.java.practice.human.dto.CreateHumanResponse;
-import com.isntyet.java.practice.human.dto.GetUsersResponse;
+import com.isntyet.java.practice.human.dto.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/human")
@@ -17,7 +19,7 @@ public class HumanController {
     private final HumanService humanService;
 
     @GetMapping("/decrease")
-    public String decreaseMoney(@RequestParam(value = "name") String name, @RequestParam(value = "money") int money) {
+    public CommonResponse<String> decreaseMoney(@RequestParam(value = "name") String name, @RequestParam(value = "money") int money) {
         String result;
         try {
             humanService.decreaseMoney(name, money);
@@ -31,11 +33,11 @@ public class HumanController {
             result = e.getMessage();
         }
         log.info(result);
-        return result;
+        return CommonResponse.ok(result);
     }
 
     @GetMapping("/increase")
-    public String increaseMoney(@RequestParam(value = "name") String name, @RequestParam(value = "money") int money) {
+    public CommonResponse<String> increaseMoney(@RequestParam(value = "name") String name, @RequestParam(value = "money") int money) {
         String result;
         try {
             humanService.increaseMoney(name, money);
@@ -44,22 +46,56 @@ public class HumanController {
             result = e.getMessage();
         }
         log.info(result);
-        return result;
+        return CommonResponse.ok(result);
     }
 
     @PostMapping
-    public Human createHuman(@RequestBody CreateHumanRequest request) {
-        return humanService.create(request);
+    public CommonResponse<Human> createHuman(
+            @RequestHeader Map<String, Object> requestHeader,
+            @RequestBody CreateHumanRequest request
+    ) {
+        this.printHeader(requestHeader);
+        return CommonResponse.ok(humanService.create(request));
+    }
+
+    @GetMapping("/list")
+    public CommonResponse<List<Human>> getHumans(
+            @RequestHeader Map<String, Object> requestHeader,
+            @RequestParam(value = "name") String name
+    ) {
+        this.printHeader(requestHeader);
+
+        return CommonResponse.ok(humanService.getHumansByName(name));
     }
 
     @PostMapping("/external-create-human")
-    public CreateHumanResponse createExternalHuman(@RequestBody CreateHumanRequest request) {
-        return humanService.createExternalHuman(request);
+    public CommonResponse<CreateHumanResponse> createExternalHuman(@RequestBody CreateHumanRequest request) {
+        return CommonResponse.ok(humanService.createExternalHuman(request));
+    }
+
+    @GetMapping("/external-get-humans")
+    public CommonResponse<List<HumanInfo>> getExternalHumans(@RequestParam(value = "name") String name) {
+        var result = humanService.getExternalHumans(name);
+        return CommonResponse.ok(result);
+    }
+
+    @GetMapping("/external-get-humans2")
+    public CommonResponse<List<HumanInfo>> getExternalHumans2(@RequestParam(value = "name") String name) {
+        var result = humanService.getExternalHumans2(name);
+        return CommonResponse.ok(result);
     }
 
     @GetMapping("/external-users")
-    public GetUsersResponse getExternalUsers(@RequestParam(value = "nation") String nation) {
+    public CommonResponse<GetUsersResponse> getExternalUsers(@RequestParam(value = "nation") String nation) {
         var result = humanService.getExternalUsers(nation);
-        return result;
+        return CommonResponse.ok(result);
+    }
+
+    private void printHeader(Map<String, Object> requestHeader) {
+        System.out.println("header ================== ");
+        for (String s : requestHeader.keySet()) {
+            System.out.println(s + " --- " + requestHeader.get(s));
+        }
+        System.out.println("=========================== ");
     }
 }
