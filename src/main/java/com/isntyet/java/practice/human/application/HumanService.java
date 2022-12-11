@@ -2,10 +2,12 @@ package com.isntyet.java.practice.human.application;
 
 import com.isntyet.java.practice.human.domain.Human;
 import com.isntyet.java.practice.human.domain.HumanRepository;
+import com.isntyet.java.practice.human.dto.CreateHumanRequest;
+import com.isntyet.java.practice.human.dto.CreateHumanResponse;
 import com.isntyet.java.practice.human.dto.GetUsersResponse;
 import com.isntyet.java.practice.human.event.HumanEvent;
+import com.isntyet.java.practice.human.infra.HumanClient;
 import com.isntyet.java.practice.human.infra.UserClient;
-import com.isntyet.java.practice.human.infra.config.UserFeignClientConfig;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
@@ -19,6 +21,7 @@ public class HumanService {
     private final HumanRepository humanRepository;
     private final ApplicationEventPublisher eventPublisher;
     private final UserClient userClient;
+    private final HumanClient humanClient;
 
     @Transactional
     public int currentMoney(String name) {
@@ -39,6 +42,19 @@ public class HumanService {
         Human human = humanRepository.findByName(name);
         human.increaseMoney(money);
         eventPublisher.publishEvent(new HumanEvent(this));
+    }
+
+    public Human create(CreateHumanRequest request) {
+        Human human = Human.builder()
+                .name(request.getName())
+                .money(request.getMoney())
+                .birth(request.getBirth())
+                .build();
+        return humanRepository.save(human);
+    }
+
+    public CreateHumanResponse createExternalHuman(CreateHumanRequest request) {
+        return humanClient.createHuman(request);
     }
 
     public GetUsersResponse getExternalUsers(String nation) {

@@ -1,5 +1,6 @@
 package com.isntyet.java.practice.human.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +22,7 @@ public class Human {
     @Version
     private Integer version;
 
+    @Builder
     public Human(String name, Integer money, LocalDate birth) {
         this.name = name;
         this.money = money;

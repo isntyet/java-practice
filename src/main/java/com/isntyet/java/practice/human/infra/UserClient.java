@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "userClient", url = "https://randomuser.me")
+@FeignClient(name = "userClient", url = "${external.user-service.host}")
 public interface UserClient {
 
     @GetMapping(value = "/api/")

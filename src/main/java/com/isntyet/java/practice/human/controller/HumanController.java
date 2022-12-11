@@ -1,13 +1,13 @@
 package com.isntyet.java.practice.human.controller;
 
 import com.isntyet.java.practice.human.application.HumanService;
+import com.isntyet.java.practice.human.domain.Human;
+import com.isntyet.java.practice.human.dto.CreateHumanRequest;
+import com.isntyet.java.practice.human.dto.CreateHumanResponse;
 import com.isntyet.java.practice.human.dto.GetUsersResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/human")
@@ -45,6 +45,16 @@ public class HumanController {
         }
         log.info(result);
         return result;
+    }
+
+    @PostMapping
+    public Human createHuman(@RequestBody CreateHumanRequest request) {
+        return humanService.create(request);
+    }
+
+    @PostMapping("/external-create-human")
+    public CreateHumanResponse createExternalHuman(@RequestBody CreateHumanRequest request) {
+        return humanService.createExternalHuman(request);
     }
 
     @GetMapping("/external-users")
