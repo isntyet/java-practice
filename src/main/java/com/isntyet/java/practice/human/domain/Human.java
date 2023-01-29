@@ -1,5 +1,6 @@
 package com.isntyet.java.practice.human.domain;
 
+import com.isntyet.java.practice.home.domain.Home;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,12 @@ public class Human {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "human_idx")
     private Long idx;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "home_idx", referencedColumnName = "home_idx", nullable = false)
+    private Home home;
     private String name;
     private Integer money;
     private LocalDate birth;
@@ -23,7 +29,8 @@ public class Human {
     private Integer version;
 
     @Builder
-    public Human(String name, Integer money, LocalDate birth) {
+    public Human(Home home, String name, Integer money, LocalDate birth) {
+        this.home = home;
         this.name = name;
         this.money = money;
         this.birth = birth;

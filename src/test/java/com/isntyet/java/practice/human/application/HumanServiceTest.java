@@ -1,5 +1,7 @@
 package com.isntyet.java.practice.human.application;
 
+import com.isntyet.java.practice.home.domain.Home;
+import com.isntyet.java.practice.home.domain.HomeRepository;
 import com.isntyet.java.practice.human.domain.Human;
 import com.isntyet.java.practice.human.domain.HumanRepository;
 import org.junit.jupiter.api.AfterEach;
@@ -25,6 +27,10 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 @Testcontainers
 @ActiveProfiles("test")
 class HumanServiceTest {
+
+    @Autowired
+    HomeRepository homeRepository;
+
     @Autowired
     HumanService humanService;
 
@@ -33,13 +39,21 @@ class HumanServiceTest {
 
     @BeforeEach
     void beforeEach() {
-        Human human1 = new Human("조재영", 10000, LocalDate.of(1991, 2, 26));
+        Home home = Home.builder()
+                .name("home")
+                .address("address")
+                .price(1000)
+                .build();
+
+        homeRepository.save(home);
+
+        Human human1 = new Human(home, "조재영", 10000, LocalDate.of(1991, 2, 26));
         humanRepository.save(human1);
-        Human human2 = new Human("조조", 2500000, LocalDate.of(1944, 1, 26));
+        Human human2 = new Human(home, "조조", 2500000, LocalDate.of(1944, 1, 26));
         humanRepository.save(human2);
-        Human human3 = new Human("유비", 3000, LocalDate.of(1941, 5, 05));
+        Human human3 = new Human(home, "유비", 3000, LocalDate.of(1941, 5, 05));
         humanRepository.save(human3);
-        Human human4 = new Human("알렉산더", 10000, LocalDate.of(2001, 11, 20));
+        Human human4 = new Human(home, "알렉산더", 10000, LocalDate.of(2001, 11, 20));
         humanRepository.save(human4);
     }
 

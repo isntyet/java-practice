@@ -1,12 +1,12 @@
 package com.isntyet.java.practice.home.controller;
 
+import com.isntyet.java.practice.common.CommonResponse;
 import com.isntyet.java.practice.home.application.HomeService;
+import com.isntyet.java.practice.home.application.command.CreateHomeCommand;
+import com.isntyet.java.practice.home.application.dto.HomeInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -14,6 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/home")
 public class HomeController {
     private final HomeService homeService;
+
+    @PostMapping
+    public CommonResponse<HomeInfo> create(@RequestBody CreateHomeCommand command) {
+        HomeInfo home = homeService.create(command);
+
+        return CommonResponse.ok(home);
+    }
 
     @GetMapping("/decrease")
     public String decreasePrice(@RequestParam(value = "name") String name, @RequestParam(value = "price") int price) {
