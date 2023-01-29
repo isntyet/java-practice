@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import javax.persistence.LockModeType;
 
-public interface HomeRepository extends JpaRepository<Home, Long> {
+public interface HomeRepository extends JpaRepository<Home, Long>, HomeRepositoryCustom {
 
     Home findByName(String name);
 

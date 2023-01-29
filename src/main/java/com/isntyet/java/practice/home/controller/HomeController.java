@@ -3,10 +3,13 @@ package com.isntyet.java.practice.home.controller;
 import com.isntyet.java.practice.common.CommonResponse;
 import com.isntyet.java.practice.home.application.HomeService;
 import com.isntyet.java.practice.home.application.command.CreateHomeCommand;
+import com.isntyet.java.practice.home.application.command.SearchHomeQuery;
 import com.isntyet.java.practice.home.application.dto.HomeInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -20,6 +23,13 @@ public class HomeController {
         HomeInfo home = homeService.create(command);
 
         return CommonResponse.ok(home);
+    }
+
+    @PostMapping("/search")
+    public CommonResponse<List<HomeInfo>> search(@RequestBody SearchHomeQuery query) {
+        List<HomeInfo> homes = homeService.search(query);
+
+        return CommonResponse.ok(homes);
     }
 
     @GetMapping("/decrease")

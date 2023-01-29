@@ -16,11 +16,11 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        format_sql: false
+        format_sql: true
   datasource:
     url: jdbc:mysql://localhost:3306/jojae?serverTimezone=UTC&characterEncoding=UTF-8
-    username: root
-    password: password
+    username: test
+    password: test
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 external:
