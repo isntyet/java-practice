@@ -3,28 +3,5 @@ server:
   shutdown: graceful
 
 spring:
-  profiles:
-    active: local
   application:
     name: jojae
-  jpa:
-    open-in-view: false
-    database: mysql
-    generate-ddl: false
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        format_sql: true
-  datasource:
-    url: jdbc:mysql://localhost:3306/jojae?serverTimezone=UTC&characterEncoding=UTF-8
-    username: test
-    password: test
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
-external:
-  user-service:
-    host: 'https://randomuser.me'
-  human-service:
-    host: 'http://localhost:8080'

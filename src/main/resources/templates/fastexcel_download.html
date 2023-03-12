@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EXCEL DOWNLOAD</title>
+</head>
+<body>
+
+<div class="contents_wrap">
+
+    <div>
+        <input type="button" value="fastexcel get windowopen" onclick="fastexcelWindowOpen()">
+    </div>
+    <br/>
+
+    <form action="http://localhost:8080/home/download" method="post">
+        <input type="submit" value="fastexcel post form">
+    </form>
+    <br/>
+
+    <form action="http://localhost:8080/home/download-2" method="post">
+        <input type="text" name="name" value="name">
+        <input type="submit" value="fastexcel post form with filter">
+    </form>
+    <br/>
+</div>
+
+<script
+        src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+    function fastexcelWindowOpen() {
+        var excelDownloadUrl = "http://localhost:8080/home/download";
+        window.open(excelDownloadUrl, "_self", 'width=200, height=200, left=2000, top=2000');
+    }
+
+</script>
+</body>
+</html>

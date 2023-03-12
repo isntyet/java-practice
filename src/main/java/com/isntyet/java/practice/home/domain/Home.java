@@ -31,7 +31,7 @@ public class Home {
         this.name = name;
         this.address = address;
         this.price = price;
-        this.humans = humans.stream().map(
+        this.humans = humans == null ? null : humans.stream().map(
                         humanItem -> Human.builder()
                                 .home(this)
                                 .name(humanItem.getName())
