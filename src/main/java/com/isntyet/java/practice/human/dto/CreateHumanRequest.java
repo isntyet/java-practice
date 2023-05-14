@@ -1,20 +1,26 @@
 package com.isntyet.java.practice.human.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Builder
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class CreateHumanRequest {
-    private final String name;
+    private String name;
 
-    private final Integer money;
+    private Integer money;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private final LocalDate birth;
+    private LocalDate birth;
+
+    private Set<String> tags = new LinkedHashSet<>();
 }

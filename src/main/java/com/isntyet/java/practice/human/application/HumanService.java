@@ -2,7 +2,10 @@ package com.isntyet.java.practice.human.application;
 
 import com.isntyet.java.practice.human.domain.Human;
 import com.isntyet.java.practice.human.domain.HumanRepository;
-import com.isntyet.java.practice.human.dto.*;
+import com.isntyet.java.practice.human.dto.CreateHumanRequest;
+import com.isntyet.java.practice.human.dto.CreateHumanResponse;
+import com.isntyet.java.practice.human.dto.GetUsersResponse;
+import com.isntyet.java.practice.human.dto.HumanInfo;
 import com.isntyet.java.practice.human.event.HumanEvent;
 import com.isntyet.java.practice.human.infra.HumanClient;
 import com.isntyet.java.practice.human.infra.SecondHumanClient;
@@ -52,6 +55,7 @@ public class HumanService {
                 .name(request.getName())
                 .money(request.getMoney())
                 .birth(request.getBirth())
+                .tags(request.getTags())
                 .build();
         return humanRepository.save(human);
     }

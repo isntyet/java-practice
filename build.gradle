@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.7.2'
     id 'io.spring.dependency-management' version '1.0.12.RELEASE'
     id 'java'
+    id 'com.netflix.dgs.codegen' version '5.6.0'
 }
 
 group = 'com.isntyet.java'
@@ -49,6 +50,20 @@ dependencies {
     testImplementation 'org.testcontainers:junit-jupiter:1.15.3'
     testImplementation 'org.testcontainers:mariadb:1.15.3'
     runtimeOnly 'mysql:mysql-connector-java'
+
+    // DGS
+    implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:5.5.1"))
+    implementation("com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter")
+    implementation("com.netflix.graphql.dgs:graphql-dgs-extended-scalars")
+//    implementation("com.netflix.graphql.dgs:graphql-dgs-pagination")
+}
+
+generateJava {
+    typeMapping = [
+            "BigDecimal"   : "java.math.BigDecimal",
+            "Long"         : "java.lang.Long",
+            "LinkedHashSet": "java.util.LinkedHashSet"
+    ]
 }
 
 test {

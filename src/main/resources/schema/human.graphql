@@ -1,0 +1,30 @@
+scalar Date
+scalar LinkedHashSet
+
+type Human {
+    "사람 ID"
+    idx: Int!
+    "사람 이름"
+    name: String!
+    "가진 돈"
+    money: Int
+    "태그"
+    tags: LinkedHashSet
+}
+
+input CreateHumanInput {
+    name: String!
+    money: Int
+    birth: Date
+    tags: [String!]
+}
+
+type Query {
+    getHumansByName(name: String): [Human]
+}
+
+type Mutation {
+    createHuman(input: CreateHumanInput): Human
+}
+
+

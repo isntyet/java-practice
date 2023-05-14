@@ -6,7 +6,7 @@ spring:
     driver-class-name: org.h2.Driver
   jpa:
     open-in-view: false
-    generate-ddl: false
+    generate-ddl: true
     show-sql: true
     hibernate:
       ddl-auto: update
@@ -25,3 +25,9 @@ external:
     host: 'https://randomuser.me'
   human-service:
     host: 'http://localhost:8080'
+
+
+dgs:
+  graphql:
+    extensions:
+      s
