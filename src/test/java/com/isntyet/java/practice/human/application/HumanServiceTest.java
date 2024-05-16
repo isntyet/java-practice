@@ -47,13 +47,35 @@ class HumanServiceTest {
 
         homeRepository.save(home);
 
-        Human human1 = new Human(home, "조재영", 10000, LocalDate.of(1991, 2, 26));
+        Human human1 = Human.builder()
+                .home(home)
+                .name("조재영")
+                .money(10000)
+                .birth(LocalDate.of(1991, 2, 26))
+                .build();
+
         humanRepository.save(human1);
-        Human human2 = new Human(home, "조조", 2500000, LocalDate.of(1944, 1, 26));
+
+        Human human2 = Human.builder()
+                .home(home)
+                .name("조조")
+                .money(2500000)
+                .birth(LocalDate.of(1944, 1, 26))
+                .build();
         humanRepository.save(human2);
-        Human human3 = new Human(home, "유비", 3000, LocalDate.of(1941, 5, 05));
+        Human human3 = Human.builder()
+                .home(home)
+                .name("유비")
+                .money(3000)
+                .birth(LocalDate.of(1941, 5, 05))
+                .build();
         humanRepository.save(human3);
-        Human human4 = new Human(home, "알렉산더", 10000, LocalDate.of(2001, 11, 20));
+        Human human4 = Human.builder()
+                .home(home)
+                .name("알렉산더")
+                .money(10000)
+                .birth(LocalDate.of(2001, 11, 20))
+                .build();
         humanRepository.save(human4);
     }
 

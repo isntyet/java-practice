@@ -21,3 +21,5 @@ spring:
 external:
   user-service:
     host: 'https://randomuser.me'
+  human-service:
+    host: 'http://localhost:8080'
